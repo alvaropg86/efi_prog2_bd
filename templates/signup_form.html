@@ -1,0 +1,46 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "base_template.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}Registro de usuarios{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+    <!-- PARA EVITAR QUE EL BROWSER VALIDE LOS CAMPOS POR NOSOTROS, AÑADIMOS EL ATRIBUTO novalidate -->
+    <div class="container">
+        <div class="row">
+            <div class="col s3"></div>
+            <div class="col s6">
+
+    <form action="" method="post" novalidate>
+        <!-- LA LÍNEA {{ form.hidden_tag() }} AÑADE TODOS LOS CAMPOS DE TIPO HIDDEN DEL FORM SI LOS HAY. Flask-WTF GENERA PARA TODAS LAS INSTANCIAS DE LA CLASE FlaskForm UN CAMPO OCULTO QUE PROTEGE LA APP DE ATAQUES CSRF -->
+        {{ form.hidden_tag() }}
+        <div class = "mbot">
+            {{ form.name.label }}
+            {{ form.name(size=64) }}<br>
+            <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+            {% for error in form.name.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class = "mbot">
+            {{ form.email.label }}
+            {{ form.email }}<br>
+            <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+            {% for error in form.email.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class = "mbot">
+            {{ form.password.label }}
+            {{ form.password }}<br>
+            <!-- LE MOSTRAMOS AL USUARIO EL ERROR DE VALIDACIÓN -->
+            {% for error in form.password.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div class="mbot center">
+            <a class="waves-effect waves-light btn">{{ form.submit() }}</a>
+        </div>
+    </form>
+</div>
+<div class="col s3"></div>
+{% endblock %}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- BLOQUE DE TITULO -->
+    <title>{% block title %}{% endblock %}</title>
+    <!-- LLAMAMOS UNA HOJA DE ESTILOS ESTÁTICA -->
+    <link rel="stylesheet" href='{{ url_for("static", filename="base.css") }}'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="mbot">
+        <div class="nav-wrapper blue lighten-4">
+          <a href="{{ url_for('index') }}" class="black-text right homestyle"><h5>Home</h5></a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            {% if current_user.is_anonymous %}
+                <li><a class= "black-text" href="{{ url_for('login') }}">Login</a></li>
+                <li><a class= "black-text" href="{{ url_for('show_signup_form') }}">Registrar</a></li>
+            {% else %}
+                <li><a class= "black-text namebold" href="#">{{ current_user.name }}</a></li>
+                <li><a class= "black-text" href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>    
+
+    <!-- BLOQUE DE CONTENIDO -->
+    {% block content %}{% endblock %}
+</body>
+</html>

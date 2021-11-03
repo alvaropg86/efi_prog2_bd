@@ -1,0 +1,12 @@
+<!-- CARGAMOS COMO EXTEND LA PLANTILLA BASE -->
+{% extends "base_template.html" %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE TITULO -->
+{% block title %}Tutorial Flask: Miniblog{% endblock %}
+<!-- CARGAMOS CONTENIDO EN EL BLOQUE DE CONTENIDOS -->
+{% block content %}
+    <ul>
+    {% for post in posts %}
+        <li>{{ post.title }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
